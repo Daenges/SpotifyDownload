@@ -19,12 +19,19 @@ class SpotifyDownload(object):
             "audio_format": audio_format
         }
 
+        # Check a threadcount larger than 0
         if self.settings["thread_count"] < 1:
             raise Exception("You need to use at least one thread")
-        elif not path.exists(self.settings["youtube_dl_path"]) or not path.exists(
-                self.settings["cvs_path"]) or not path.exists(
-                self.settings["download_dest"]):
-            raise Exception("The entered paths are invalid.")
+
+        # Check if youtube-dl is installed with environment variables
+        if self.settings["youtube_dl_path"] == "":
+            self.settings["youtube_dl_path"] = "youtube-dl"
+
+        # Raise error if something was not given
+        if self.settings["cvs_path"] == "" or \
+                self.settings["download_dest"] == "" or \
+                self.settings["audio_format"] == "":
+            raise Exception("Invalid values were entered")
 
     def get_settings(self):
         return self.settings
@@ -55,13 +62,13 @@ class SpotifyDownload(object):
         song_list = self.getSongArtistAndName()
         for song in song_list:
             command_list.append(
-                "{youtube_dl_path} -x --audio-format {audio_format} -o {download_dest}%(title)s.%(ext)s \"ytsearch1:{"
-                "song0} {song1} {additional_keywords}\"".format(youtube_dl_path=self.settings["youtube_dl_path"],
-                                                                audio_format=self.settings["audio_format"],
-                                                                download_dest=self.settings["download_dest"],
-                                                                song0=song[0], song1=song[1],
-                                                                additional_keywords=self.settings[
-                                                                    "additional_keywords"])
+                "{youtube_dl_path} -x --audio-format {audio_format} -o {download_dest}%(title)s.%(ext)s \"ytsearch1:"
+                "{song0} {song1} {additional_keywords}\"".format(youtube_dl_path=self.settings["youtube_dl_path"],
+                                                                 audio_format=self.settings["audio_format"],
+                                                                 download_dest=self.settings["download_dest"],
+                                                                 song0=song[0], song1=song[1],
+                                                                 additional_keywords=self.settings[
+                                                                     "additional_keywords"])
             )
         return command_list
 
@@ -83,3 +90,15 @@ class SpotifyDownload(object):
     def startThreadWithChunk(self, chunk):
         for command in chunk:
             subprocess.call(command)
+
+
+if __name__ == '__main__':
+    print("Welcome to this script!")
+    SD = SpotifyDownload(
+        input("Please enter the path to the downloaded csv file:"),
+        input("Enter a path, where the music should be saved:"),
+        int(input("Enter the amount of threads you want to use (number):")),
+        input("Please enter the path to the 'youtube-dl.exe':"),
+        input("Add additional keywords that should be added to the Youtube search:")
+    )
+    SD.Start()
