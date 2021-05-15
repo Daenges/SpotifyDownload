@@ -3,9 +3,9 @@
 Download your Spotify playlist from Youtube through Youtube-DL.
 
 ## Requirements:
-[FFMPEG](https://ffmpeg.org/) to convert videos into other formats.
-[Youtube-DL](https://youtube-dl.org/) to download videos.
-[Exportify](https://watsonbox.github.io/exportify/) to download your playlist in a .csv format.
+[FFMPEG](https://ffmpeg.org/) to convert videos into other formats. <br />
+[Youtube-DL](https://youtube-dl.org/) to download videos. <br />
+[Exportify](https://watsonbox.github.io/exportify/) to download your playlist in a .csv format. <br />
 ___
 ## Instructions
 
