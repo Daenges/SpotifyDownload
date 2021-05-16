@@ -152,6 +152,7 @@ class GUI(object):
         self.settings_window.iconbitmap("./ressources/SpotifyDownload_icon.ico")
         self.settings_window["background"] = '#42576B'
         self.settings_window.resizable(False, False)
+        self.settings_window.focus_force()
 
         settings = ["thread_count",
                     "additional_keywords",
