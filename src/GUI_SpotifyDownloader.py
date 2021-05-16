@@ -7,7 +7,7 @@ import webbrowser
 from tkinter import filedialog, END
 from tkinter.ttk import Progressbar
 
-from SpotifyDownloader import SpotifyDownload
+from SpotifyDownloader import SpotifyDownloader
 
 
 class GUI(object):
@@ -205,14 +205,14 @@ class GUI(object):
     def start_download_instance(self):
         # Try to initialize download object through user given parameters
         try:
-            sd = SpotifyDownload(csv_path=str(self.textbox_csv_path.get(1.0, END)).replace("\n", ""),
-                                 download_dest=str(self.textbox_download_dest.get(1.0, END)).replace("\n", ""),
-                                 thread_count=int(self.textbox_threadcount.get(1.0, END)),
-                                 youtube_dl_path=str(self.textbox_yt_dl_path.get(1.0, END)).replace("\n", ""),
-                                 additional_keywords=str(self.textbox_additionaly_keywords.get(1.0, END))
-                                 .replace("\n", "") + " ",
-                                 audio_format=str(self.textbox_audioformat.get(1.0, END)).replace("\n", "")
-                                 )
+            sd = SpotifyDownloader(csv_path=str(self.textbox_csv_path.get(1.0, END)).replace("\n", ""),
+                                   download_dest=str(self.textbox_download_dest.get(1.0, END)).replace("\n", ""),
+                                   thread_count=int(self.textbox_threadcount.get(1.0, END)),
+                                   youtube_dl_path=str(self.textbox_yt_dl_path.get(1.0, END)).replace("\n", ""),
+                                   additional_keywords=str(self.textbox_additionaly_keywords.get(1.0, END))
+                                   .replace("\n", "") + " ",
+                                   audio_format=str(self.textbox_audioformat.get(1.0, END)).replace("\n", "")
+                                   )
 
             # Close the settings window
             self.settings_window.destroy()
