@@ -271,5 +271,5 @@ class GUI(object):
             self.textbox_csv_path.delete('1.0', END)
             tk.messagebox.showerror(title="File Wizard", message="Invalid file: " + str(e))
 
-
-g = GUI()
+if __name__ == "__main__":
+    g = GUI()
