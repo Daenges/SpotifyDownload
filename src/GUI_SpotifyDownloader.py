@@ -1,5 +1,6 @@
 import csv
 import threading
+import time
 import tkinter as tk
 import tkinter.messagebox as mb
 import webbrowser
@@ -143,7 +144,7 @@ class GUI(object):
 
     def open_download_settings(self):
         # Initialize window
-        self.settings_window = tk.Toplevel(self.root_window) # Create on top of main window
+        self.settings_window = tk.Toplevel(self.root_window)  # Create on top of main window
         self.settings_window.geometry("300x250" + "+{}+{}".format(self.root_window.winfo_x() +
                                                                   self.root_window.winfo_width() // 2 - 150,
                                                                   self.root_window.winfo_y()))
@@ -212,25 +213,32 @@ class GUI(object):
                                  audio_format=str(self.textbox_audioformat.get(1.0, END)).replace("\n", "")
                                  )
 
-            # Create a progress bar
-            pb = Progressbar(self.settings_window, length='200', mode="indeterminate",
-                             orient=tk.HORIZONTAL)
-            pb.place(x=self.button_start_download.winfo_x() // 2, y=self.button_start_download.winfo_y() - 30)
-            pb.start(5)
+            # Close the settings window
+            self.settings_window.destroy()
+
+            self.pb_main = Progressbar(self.root_window, length='200', mode="indeterminate",
+                                       orient=tk.HORIZONTAL)
+            self.pb_main.place(x=self.listbox.winfo_x() + self.listbox.winfo_width() + 20,
+                               y=self.root_window.winfo_height() - 80)
+            self.pb_main.start(5)
 
             # Uptdate the root window
             self.root_window.update()
 
-            self.pb_main = Progressbar(self.root_window, length='200', mode="indeterminate",
-                             orient=tk.HORIZONTAL)
-            self.pb_main.place(x=self.listbox.winfo_x() + self.listbox.winfo_width() + 20,
-                               y=self.root_window.winfo_height() - 80)
-            self.pb_main.start(5)
+            # Download label
+            self.label_downloading = tk.Label(text="Downloading")
+            self.label_downloading["background"] = '#42576B'
+            self.label_downloading.place(x=self.pb_main.winfo_x(), y=self.pb_main.winfo_y() + 30)
 
             # Create thread to handle the work to avoid locking the main program
             self.work_thread = threading.Thread(target=sd.Start, args=())
             self.work_thread.daemon = True
             self.work_thread.start()
+
+            # Temp thread to cancel the progressbar
+            temp_thread = threading.Thread(target=self.check_thread_work, args=())
+            temp_thread.daemon = True
+            temp_thread.start()
 
         # Message the user if something went wrong
         except Exception as e:
@@ -241,6 +249,13 @@ class GUI(object):
         self.textbox_download_dest.delete('1.0', END)
         # Insert path from dialogue
         self.textbox_download_dest.insert('1.0', tk.filedialog.askdirectory() + "/")
+
+    def check_thread_work(self):
+        while self.work_thread.is_alive():
+            time.sleep(1)
+
+        self.pb_main.place_forget()
+        self.label_downloading.place_forget()
 
     def open_dialogue_yt_dl(self):
         # Clear Box
@@ -264,12 +279,13 @@ class GUI(object):
                       mode='r') as csv_file:
                 csv_reader = csv.DictReader(csv_file)
                 for row in csv_reader:
-                    self.listbox.insert(END, "{} {}".format(row["Track Name"], row["Artist Name(s)"]))
+                    self.listbox.insert(END, "{} || Artist: {}".format(row["Track Name"], row["Artist Name(s)"]))
 
         # Message the user if something went wrong
         except Exception as e:
             self.textbox_csv_path.delete('1.0', END)
             tk.messagebox.showerror(title="File Wizard", message="Invalid file: " + str(e))
+
 
 if __name__ == "__main__":
     g = GUI()
