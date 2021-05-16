@@ -3,7 +3,8 @@
 Download your Spotify playlist from Youtube through Youtube-DL.
 
 ## Disclaimer
-Technically speaking, this program is only an automation tool for [Youtube-DL](https://youtube-dl.org/). Therefore, all rules concidering the download of copyright affected content can be applied here.
+Technically speaking, this program is only an automation tool for [Youtube-DL](https://youtube-dl.org/).<br />
+Therefore, all rules concidering the download of copyright affected content can be applied here.
 ___
 ## Requirements:
 [FFMPEG](https://ffmpeg.org/) to convert videos into other formats. (As [Environment Variable](https://windowsloop.com/add-environment-variable-in-windows-10/) in Windows 10) <br />
@@ -11,6 +12,8 @@ ___
 [Exportify](https://watsonbox.github.io/exportify/) to download your playlist in a .csv format. <br />
 
 ## Instructions
+
+**Open [start.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/start.py) and choose whether to start with a GUI:**
 
 ### Commandline
 - Start [SpotifyDownloader.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/SpotifyDownloader.py)
