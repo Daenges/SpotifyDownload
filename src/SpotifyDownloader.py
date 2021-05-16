@@ -1,6 +1,5 @@
 import csv
 import subprocess
-from os import path
 from threading import Thread
 
 
