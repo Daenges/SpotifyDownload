@@ -22,7 +22,7 @@ ___
 - Enter a path, where the music should be saved: ```[path where the music should be saved]```
 - Enter the amount of threads you want to use: ```[Number of threads that should be used]```
 - Please enter the path to the 'youtube-dl.exe': ```[Path to Youtube-DL]```
-- Add additional keywords that should be added to the Youtube search: ```[e.g. 'lyrics' which improves search results]```
+- Add additional keywords to the Youtube search: ```[e.g. 'lyrics' which improves search results]```
 
 ![SD_Commandline_screenshot](https://user-images.githubusercontent.com/57369924/118376340-c5685300-b5c7-11eb-9fa4-87e3c0e98385.png)
 
