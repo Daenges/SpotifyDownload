@@ -3,7 +3,7 @@
 Download your Spotify playlist from Youtube through Youtube-DL.
 
 ## Disclaimer
-Technically speaking, this program is only an automation tool for [Youtube-DL](https://youtube-dl.org/).<br />
+Technically speaking, this program is only an automation tool for [Youtube-DL](https://youtube-dl.org/). <br />
 Therefore, all rules concidering the download of copyright affected content can be applied here.
 ___
 ## Requirements:
@@ -16,7 +16,7 @@ ___
 **Open [start.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/start.py) and choose whether to start with a GUI:**
 
 ### Commandline
-- Start [SpotifyDownloader.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/SpotifyDownloader.py)
+- **[Optional]** Start [SpotifyDownloader.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/SpotifyDownloader.py)
 - Answer the questions:
 - Please enter the path to the downloaded csv file: ```[location of the downloaded file]```
 - Enter a path, where the music should be saved: ```[path where the music should be saved]```
@@ -29,7 +29,7 @@ ___
 ---
 ### GUI
 
-- Start [GUI_SpotifyDownloader.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/GUI_SpotifyDownloader.py):
+- **[Optional]** Start [GUI_SpotifyDownloader.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/GUI_SpotifyDownloader.py):
 - Enter the path of everything in the textboxes or open a dialogue with the button. (1)
 - [Optional] Click on the arrows to open the downloadpage for the [CSV](https://watsonbox.github.io/exportify/) or [Youtube-DL](https://youtube-dl.org/) file. (2)
 - If you did it correctly, you should see results in (3).
