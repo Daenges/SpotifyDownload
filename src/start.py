@@ -12,7 +12,7 @@ if __name__ == "__main__":
             input("Please enter the path to the 'youtube-dl.exe':"),
             input("Add additional keywords that should be added to the Youtube search:")
         )
-        sd.Start()
+        sd.start()
     else:
         print("Starting GUI")
         g = GUI()

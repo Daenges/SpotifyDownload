@@ -136,10 +136,12 @@ class GUI(object):
         # Start mainloop
         self.root_window.mainloop()
 
-    def open_browser_yt_dl(self):
+    @staticmethod
+    def open_browser_yt_dl():
         webbrowser.open_new_tab("https://youtube-dl.org/")
 
-    def open_browser_exportify(self):
+    @staticmethod
+    def open_browser_exportify():
         webbrowser.open_new_tab("https://watsonbox.github.io/exportify/")
 
     def open_download_settings(self):
@@ -232,7 +234,7 @@ class GUI(object):
             self.label_downloading.place(x=self.pb_main.winfo_x(), y=self.pb_main.winfo_y() + 30)
 
             # Create thread to handle the work to avoid locking the main program
-            self.work_thread = threading.Thread(target=sd.Start, args=())
+            self.work_thread = threading.Thread(target=sd.start, args=())
             self.work_thread.daemon = True
             self.work_thread.start()
 
