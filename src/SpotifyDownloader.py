@@ -1,5 +1,4 @@
 import csv
-import re
 import subprocess
 from threading import Thread
 
