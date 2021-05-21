@@ -62,13 +62,15 @@ class SpotifyDownloader(object):
         song_list = self.get_song_artist_and_name()
         for song in song_list:
             command_list.append(
-                "{youtube_dl_path} -x --audio-format {audio_format} -o {download_dest}%(title)s.%(ext)s \"ytsearch1:"
-                "{song0} {song1} {additional_keywords}\"".format(youtube_dl_path=self.settings["youtube_dl_path"],
-                                                                 audio_format=self.settings["audio_format"],
-                                                                 download_dest=self.settings["download_dest"],
-                                                                 song0=song[0], song1=song[1],
-                                                                 additional_keywords=self.settings[
-                                                                     "additional_keywords"])
+                "{youtube_dl_path} -x --audio-format {audio_format} -o \"{download_dest}{filename}.%(ext)s\""
+                " \"ytsearch1: {song0} {song1} {additional_keywords}\"".format(
+                    youtube_dl_path=self.settings["youtube_dl_path"],
+                    audio_format=self.settings["audio_format"],
+                    download_dest=self.settings["download_dest"],
+                    filename=song[0] + " - " + song[1],
+                    song0=song[0], song1=song[1],
+                    additional_keywords=self.settings[
+                        "additional_keywords"])
             )
         return command_list
 
