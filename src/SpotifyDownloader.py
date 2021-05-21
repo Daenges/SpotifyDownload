@@ -1,4 +1,5 @@
 import csv
+import re
 import subprocess
 from threading import Thread
 
@@ -67,7 +68,7 @@ class SpotifyDownloader(object):
                     youtube_dl_path=self.settings["youtube_dl_path"],
                     audio_format=self.settings["audio_format"],
                     download_dest=self.settings["download_dest"],
-                    filename=song[0] + " - " + song[1],
+                    filename=(song[0] + " - " + song[1]).replace("/", " ").replace("\\", " "),
                     song0=song[0], song1=song[1],
                     additional_keywords=self.settings[
                         "additional_keywords"])
