@@ -160,6 +160,8 @@ class GUI(object):
                     "additional_keywords",
                     "audio_format"]
 
+        option_list = ['aac', 'best', 'flac', 'm4a', 'mp3', 'opus', 'vorbis', 'wav']
+
         for num, setting in enumerate(settings):
             self.settings_window.update()
             temp = tk.Label(self.settings_window, text=setting)
@@ -184,12 +186,14 @@ class GUI(object):
                                                 width=100, height=20)
 
         # Create Textbox for audioformat
-        self.textbox_audioformat = tk.Text(self.settings_window)
-        self.textbox_audioformat["background"] = "#7A8997"
-        self.textbox_audioformat.place(x=160,
-                                       y=100,
-                                       width=100, height=20)
-        self.textbox_audioformat.insert("1.0", "mp3")
+        self.drop_down_menu_entry = tk.StringVar(self.settings_window)
+        self.drop_down_menu_entry.set(option_list[0])
+
+        self.drop_down_menu = tk.OptionMenu(self.settings_window, self.drop_down_menu_entry, *option_list)
+        self.drop_down_menu["background"] = "#7A8997"
+        self.drop_down_menu.place(x=160,
+                                  y=100,
+                                  width=100, height=20)
 
         # Create button to start download
         self.button_start_download = tk.Button(self.settings_window, text="Start Download",
@@ -213,7 +217,7 @@ class GUI(object):
                                    youtube_dl_path=str(self.textbox_yt_dl_path.get(1.0, END)).replace("\n", ""),
                                    additional_keywords=str(self.textbox_additionaly_keywords.get(1.0, END))
                                    .replace("\n", "") + " ",
-                                   audio_format=str(self.textbox_audioformat.get(1.0, END)).replace("\n", "")
+                                   audio_format=self.drop_down_menu_entry.get()
                                    )
 
             # Close the settings window
