@@ -15,7 +15,8 @@ class SpotifyDownloader(object):
             "thread_count": thread_count,
             "youtube_dl_path": youtube_dl_path,
             "additional_keywords": additional_keywords,
-            "audio_format": audio_format
+            "audio_format": audio_format,
+            "errors": []
         }
 
         # Check a threadcount larger than 0
@@ -80,7 +81,7 @@ class SpotifyDownloader(object):
         thread_list = []
 
         for commands in command_chunks:
-            thread_list.append(Thread(target=self.start_thread_with_chunk, args=(commands,)))
+            thread_list.append(Thread(target=self.start_thread_with_chunk, args=(commands, self.settings["errors"],)))
 
         for thread in thread_list:
             thread.start()
@@ -88,11 +89,19 @@ class SpotifyDownloader(object):
         for thread in thread_list:
             thread.join()
 
+        if len(self.settings["errors"]) > 0:
+            with open("./error.txt", "a") as log_file:
+                for error in self.settings["errors"]:
+                    log_file.write(f"{error}\n")
+
     # Calls a chunk of commands.
     @staticmethod
-    def start_thread_with_chunk(chunk):
+    def start_thread_with_chunk(chunk, error_list):
         for command in chunk:
-            subprocess.call(command)
+            try:
+                subprocess.call(command)
+            except Exception as e:
+                error_list.append(f"Command: {command} | Error: {e}")
 
 
 if __name__ == '__main__':
