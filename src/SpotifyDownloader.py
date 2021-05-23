@@ -90,6 +90,7 @@ class SpotifyDownloader(object):
             thread.join()
 
         if len(self.settings["errors"]) > 0:
+            print("Some errors occured. error.txt was created in the local directory.")
             with open("./error.txt", "a") as log_file:
                 for error in self.settings["errors"]:
                     log_file.write(f"{error}\n")
