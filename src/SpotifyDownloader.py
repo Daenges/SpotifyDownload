@@ -33,14 +33,25 @@ class SpotifyDownloader(object):
                 self.settings["audio_format"] == "":
             raise Exception("Invalid values were entered")
 
-    def get_settings(self):
-        return self.settings
+        # Takes a list and returns equally big chunks of it.
 
-    # Takes a list and returns equally big chunks of it.
     @staticmethod
     def chunks(lst, n):
         for i in range(0, len(lst), n):
             yield lst[i:i + n]
+
+    # Calls a chunk of commands.
+    @staticmethod
+    def start_thread_with_chunk(self, chunk, error_list):
+        for command in chunk:
+            try:
+                subprocess.run(command)
+
+            except Exception as e:
+                error_list.append(f"Command: {command} | Error: {e}")
+
+    def get_settings(self):
+        return self.settings
 
     # Starts the download process.
     def start(self):
@@ -101,16 +112,6 @@ class SpotifyDownloader(object):
             with open("./error.txt", "a") as log_file:
                 for error in self.settings["errors"]:
                     log_file.write(f"{error}\n")
-
-    # Calls a chunk of commands.
-    @staticmethod
-    def start_thread_with_chunk(self, chunk, error_list):
-        for command in chunk:
-            try:
-                subprocess.run(command)
-
-            except Exception as e:
-                error_list.append(f"Command: {command} | Error: {e}")
 
 
 if __name__ == '__main__':
