@@ -21,7 +21,8 @@ ___
 - Please enter the path to the downloaded csv file: ```[location of the downloaded file]```
 - Enter a path, where the music should be saved: ```[path where the music should be saved]```
 - Enter the amount of threads you want to use: ```[Number of threads that should be used]```  
-- Please enter the path to the 'youtube-dl.exe': ```[Path to Youtube-DL]```
+- Please enter the path to the 'youtube-dl.exe': ```[Path to Youtube-DL | Leave empty if it is installed on 
+  Linux or marked as an envrinonment variable]```
 - Add additional keywords to the Youtube search: ```[e.g. 'lyrics' which improves search results]```
 
 #### Amount of threads:  
