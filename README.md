@@ -20,9 +20,14 @@ ___
 - Answer the questions:
 - Please enter the path to the downloaded csv file: ```[location of the downloaded file]```
 - Enter a path, where the music should be saved: ```[path where the music should be saved]```
-- Enter the amount of threads you want to use: ```[Number of threads that should be used]```
+- Enter the amount of threads you want to use: ```[Number of threads that should be used]```  
 - Please enter the path to the 'youtube-dl.exe': ```[Path to Youtube-DL]```
 - Add additional keywords to the Youtube search: ```[e.g. 'lyrics' which improves search results]```
+
+#### Amount of threads:  
+``How many instances of Youtube-DL do you want to run at the same time?``  
+``The higher the number, the faster is the download.``  
+``Limited by the power of your PC and your internet connection.``  
 
 ![SD_Commandline_screenshot](https://user-images.githubusercontent.com/57369924/118376340-c5685300-b5c7-11eb-9fa4-87e3c0e98385.png)
 
@@ -31,7 +36,7 @@ ___
 
 - **[Optional]** Start [GUI_SpotifyDownloader.py](https://github.com/Daenges/SpotifyDownload/blob/main/src/GUI_SpotifyDownloader.py):
 - Enter the path of everything in the textboxes or open a dialogue with the button. (1)
-- [Optional] Click on the arrows to open the downloadpage for the [CSV](https://watsonbox.github.io/exportify/) or [Youtube-DL](https://youtube-dl.org/) file. (2)
+- **[Optional]** Click on the arrows to open the downloadpage for the [CSV](https://watsonbox.github.io/exportify/) or [Youtube-DL](https://youtube-dl.org/) file. (2)
 - If you did it correctly, you should see results in (3).
 - Press the download button. (4)
 - Leave standard settings, or change them in the appearing window. (Settings explained in Commandline)
