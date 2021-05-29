@@ -105,17 +105,11 @@ class SpotifyDownloader(object):
                     log_file.write(f"{error}\n")
 
     # Calls a chunk of commands.
+    @staticmethod
     def start_thread_with_chunk(self, chunk, error_list):
         for command in chunk:
             try:
-                # Is the operating system Linux?
-                print(command)
-                if self.settings["operating_system"] == "linux" or self.settings["operating_system"] == "linux2":
-                    subprocess.run(command)
-
-                # Is the operating system Windows?
-                else:
-                    subprocess.call(command)
+                subprocess.run(command)
 
             except Exception as e:
                 error_list.append(f"Command: {command} | Error: {e}")
@@ -123,14 +117,12 @@ class SpotifyDownloader(object):
 
 if __name__ == '__main__':
     print("Welcome to this script!")
-    # SD = SpotifyDownloader(
-    #     input("Please enter the path to the downloaded csv file:"),
-    #     input("Enter a path, where the music should be saved:"),
-    #     int(input("Enter the amount of threads you want to use (number):")),
-    #     input("Please enter the path to the 'youtube-dl.exe':"),
-    #     input("Add additional keywords that should be added to the Youtube search:")
-    # )
-
-    SD = SpotifyDownloader("/home/daenges/Downloads/rf.csv", "/home/daenges/Downloads/mukke/", 5, "", "lyrics")
+    SD = SpotifyDownloader(
+        input("Please enter the path to the downloaded csv file:"),
+        input("Enter a path, where the music should be saved:"),
+        int(input("Enter the amount of threads you want to use (number):")),
+        input("Please enter the path to the 'youtube-dl.exe':"),
+        input("Add additional keywords that should be added to the Youtube search:")
+    )
 
     SD.start()
