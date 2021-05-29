@@ -1,7 +1,6 @@
 import csv
 import subprocess
 from threading import Thread
-from sys import platform
 
 
 class SpotifyDownloader(object):
@@ -17,7 +16,6 @@ class SpotifyDownloader(object):
             "youtube_dl_path": youtube_dl_path,
             "additional_keywords": additional_keywords,
             "audio_format": audio_format,
-            "operating_system": platform,
             "errors": []
         }
 
