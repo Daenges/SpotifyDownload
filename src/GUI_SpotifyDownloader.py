@@ -6,6 +6,7 @@ import tkinter.messagebox as mb
 import webbrowser
 from tkinter import filedialog, END
 from tkinter.ttk import Progressbar
+from sys import platform
 
 from SpotifyDownloader import SpotifyDownloader
 
@@ -36,7 +37,8 @@ class GUI(object):
         self.root_window.title("Spotify Downloader")
         self.root_window.geometry(self.GUI_settings["window_size"])
         self.root_window.resizable(self.GUI_settings["resizable_x"], self.GUI_settings["resizable_y"])
-        self.root_window.iconbitmap("./ressources/SpotifyDownload_icon.ico")
+        if platform == "win32":
+            self.root_window.iconbitmap("./ressources/SpotifyDownload_icon.ico")
 
         # Create Listbox
         self.listbox = tk.Listbox(self.root_window)
@@ -151,10 +153,11 @@ class GUI(object):
                                                                   self.root_window.winfo_width() // 2 - 150,
                                                                   self.root_window.winfo_y()))
         self.settings_window.title("Configure Download")
-        self.settings_window.iconbitmap("./ressources/SpotifyDownload_icon.ico")
         self.settings_window["background"] = '#42576B'
         self.settings_window.resizable(False, False)
         self.settings_window.focus_force()
+        if platform == "win32":
+            self.settings_window.iconbitmap("./ressources/SpotifyDownload_icon.ico")
 
         settings = ["thread_count",
                     "additional_keywords",
