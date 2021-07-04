@@ -176,7 +176,7 @@ class GUI(object):
         self.textbox_threadcount.place(x=160,
                                        y=20,
                                        width=100, height=20)
-        self.textbox_threadcount.insert("1.0", "1")
+        self.textbox_threadcount.insert("1.0", "5")
 
         # Create Textbox for additional keywords
         self.textbox_additionaly_keywords = tk.Text(self.settings_window)
@@ -213,7 +213,7 @@ class GUI(object):
         try:
             sd = SpotifyDownloader(csv_path=str(self.textbox_csv_path.get(1.0, END)).replace("\n", ""),
                                    download_dest=str(self.textbox_download_dest.get(1.0, END)).replace("\n", ""),
-                                   thread_count=int(self.textbox_threadcount.get(1.0, END)),
+                                   thread_count=int(self.textbox_threadcount.get(5.0, END)),
                                    youtube_dl_path=str(self.textbox_yt_dl_path.get(1.0, END)).replace("\n", ""),
                                    additional_keywords=str(self.textbox_additionaly_keywords.get(1.0, END))
                                    .replace("\n", "") + " ",
