@@ -42,7 +42,7 @@ class SpotifyDownloader(object):
 
     # Calls a chunk of commands.
     @staticmethod
-    def start_thread_with_chunk(self, chunk, error_list):
+    def start_thread_with_chunk(chunk, error_list):
         for command in chunk:
             try:
                 subprocess.run(command)

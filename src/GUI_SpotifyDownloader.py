@@ -216,7 +216,7 @@ class GUI(object):
         try:
             sd = SpotifyDownloader(csv_path=str(self.textbox_csv_path.get(1.0, END)).replace("\n", ""),
                                    download_dest=str(self.textbox_download_dest.get(1.0, END)).replace("\n", ""),
-                                   thread_count=int(self.textbox_threadcount.get(5.0, END)),
+                                   thread_count=int(self.textbox_threadcount.get(1.0, END).replace("\n", "")),
                                    youtube_dl_path=str(self.textbox_yt_dl_path.get(1.0, END)).replace("\n", ""),
                                    additional_keywords=str(self.textbox_additionaly_keywords.get(1.0, END))
                                    .replace("\n", "") + " ",
